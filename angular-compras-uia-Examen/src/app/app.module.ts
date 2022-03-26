@@ -11,13 +11,16 @@ import { ReportesService } from './reportes.service';
 import { PeticionComprasComponent } from './peticion-compras/peticion-compras.component';
 import { SolicitudCompraComponent } from './solicitud-compra/solicitud-compra.component';
 import { SolicitudService } from './solicitud.service';
+import { CotizacionesReporteComponent } from './cotizaciones-reporte/cotizaciones-reporte.component';
+import { CotizacionesService } from './cotizaciones.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReportesComponenteComponent,
     ReporteDetalleComponent,
-    SolicitudCompraComponent
+    SolicitudCompraComponent,
+    CotizacionesReporteComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,7 @@ import { SolicitudService } from './solicitud.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [ReportesService, SolicitudService],
+  providers: [ReportesService, CotizacionesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,6 +5,8 @@ import {ReportesService} from '../reportes.service';
 import { ReporteDetalleComponent } from '../reporte-detalle/reporte-detalle.component';
 import { PeticionComprasComponent } from '../peticion-compras/peticion-compras.component';
 import { SolicitudService } from '../solicitud.service';
+import { CotizacionesService } from '../cotizaciones.service';
+import { ICotizaciones } from '../iCotizaciones';
 
 @Component({
   selector: 'app-reportes-componente',
@@ -18,10 +20,11 @@ export class ReportesComponenteComponent implements OnInit {
 
  reportes: IReporte[] = [];
  solicitudes: ISolicitud[] = [];
+ cotizaciones: ICotizaciones [] = [];
 
  selectedReporte?: IReporte;
 
-  constructor( public datosReportes:ReportesService, public datosSolicitud:SolicitudService) 
+  constructor( public datosReportes:ReportesService, public datosSolicitud:SolicitudService, public datosCotizacion:CotizacionesService) 
   {     
   }
                
@@ -36,6 +39,11 @@ export class ReportesComponenteComponent implements OnInit {
       console.log(data);
       this.solicitudes = data;
     })
+    this.datosCotizacion.getCotizaciones(this.reporte.id).subscribe((data: any[])=>{
+      console.log(data);
+      this.cotizaciones = data;
+    })
+    
 
   }
       
@@ -46,6 +54,10 @@ export class ReportesComponenteComponent implements OnInit {
     this.datosSolicitud.getSolicitudes(reporte.id).subscribe((data: any[])=>{
       console.log(data);
       this.solicitudes = data;
+    })
+    this.datosCotizacion.getCotizaciones(reporte.id).subscribe((data: any[])=>{
+      console.log(data);
+      this.cotizaciones = data;
     })
 
   }
